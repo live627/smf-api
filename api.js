@@ -15,7 +15,10 @@ var encode = (payload, key) =>
 	segments.push(base64urlEscape(crypto.createHmac('sha256', key).update(segments.join('.')).digest('base64')));
 
 	return segments.join('.');
-}, apiKey = encode({ id_member: 1 }, 'b8fef24b9ffae9cbf8f624de67909de5f63dcadd');
+};
+
+// Hash is from smf_api_tokens.
+var apiKey = encode({ id_member: 1 }, 'b8fef24b9ffae9cbf8f624de67909de5f63dcadd');
 
 const performRequest = (host, path, method, dataObj) => new Promise((resolve, reject) =>
 {
